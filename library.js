@@ -92,7 +92,8 @@ const printPlaylist = function(playlistId) {
 
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
-
+       let tracksArray = library.playlists[playlistId].tracks
+       tracksArray.push(trackId)
 }
 
 
@@ -105,6 +106,16 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
+       const newTrackId = generateUid()
+       
+       library.tracks[newTrackId] = {}
+       library.tracks[newTrackId].id = newTrackId
+       library.tracks[newTrackId].name = name
+       library.tracks[newTrackId].artist = artist
+       library.tracks[newTrackId].album = album
+
+
+
 
 }
 
@@ -126,4 +137,12 @@ const printSearchResults = function(query) {
 
 // printPlaylists()
 // printTracks()
-// printPlaylist("p01")
+// printPlaylist("p02")
+// printPlaylist("p02")
+
+
+addTrackToPlaylist("t01", "p02")
+//TESTING ADDTRACK printPlaylist("p02")
+// console.log(generateUid())
+
+addTrack("Let it Be", "The Beatles", "Let It Be (1970)")
