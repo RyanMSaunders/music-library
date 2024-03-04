@@ -135,7 +135,24 @@ const addPlaylist = function(name) {
 // tip: use "string".search("tri") 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 const printSearchResults = function(query) {
+       let tracksKeys = Object.keys(library.tracks)
+       let tracksValues = Object.values(library.tracks)
 
+       for(let i in tracksKeys){
+              let trackArr = []
+
+              trackArr.push(library.tracks[tracksKeys[i]].id)
+              trackArr.push(library.tracks[tracksKeys[i]].name)
+              trackArr.push(library.tracks[tracksKeys[i]].artist)
+              trackArr.push(library.tracks[tracksKeys[i]].album)
+              for(let index in trackArr)
+                     if(trackArr[index].search("tri") !== -1){
+                            console.log(library.tracks[tracksKeys[i]].name)
+                     }
+
+
+       }
+       
 }
 
 // printPlaylists()
@@ -151,3 +168,5 @@ addTrackToPlaylist("t01", "p02")
 addTrack("Let it Be", "The Beatles", "Let It Be (1970)")
 
 addPlaylist("My playlist")
+
+printSearchResults("string string")
