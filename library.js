@@ -33,14 +33,9 @@ const library = {
 const printPlaylists = function() {
        // let playlistName = library.playlists.playlistCode
        for(let playlistCode in library.playlists){
-              // console.log(playlistCode)
-              let playlistName = library.playlists[playlistCode]
-              // console.log(playlistName)
-              // console.log(playlistName.name)
-              let numOfTracks = playlistName.tracks.length
-       
-       
-             console.log(`${playlistCode}: ${playlistName.name}- ${numOfTracks} tracks`)
+              let playlistName = library.playlists[playlistCode];
+              let numOfTracks = playlistName.tracks.length;
+             console.log(`${playlistCode}: ${playlistName.name}- ${numOfTracks} tracks`);
        }
 }
 
@@ -51,8 +46,8 @@ const printPlaylists = function() {
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function() {
        for(let trackCode in library.tracks){
-              let trackObject = library.tracks[trackCode]
-              console.log(`${trackObject.id}: ${trackObject.name} by ${trackObject.artist} (${trackObject.album})`)
+              let trackObject = library.tracks[trackCode];
+              console.log(`${trackObject.id}: ${trackObject.name} by ${trackObject.artist} (${trackObject.album})`);
        }
 }
 
@@ -62,28 +57,28 @@ const printTracks = function() {
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 const printPlaylist = function(playlistId) {
-       let playlistsKeys = Object.keys(library.playlists)
-       let tracksKeys = Object.keys(library.tracks)
+       let playlistsKeys = Object.keys(library.playlists);
+       let tracksKeys = Object.keys(library.tracks);
        
        
 
        if(playlistsKeys.includes(playlistId)){
-              let playlistName = library.playlists[playlistId]
-              let numOfTracks = playlistName.tracks.length
-              console.log(`${playlistId}: ${playlistName.name}- ${numOfTracks} tracks`)
+              let playlistName = library.playlists[playlistId];
+              let numOfTracks = playlistName.tracks.length;
+              console.log(`${playlistId}: ${playlistName.name}- ${numOfTracks} tracks`);
        }
        
        
 
-       let trackValue = Object.values(library.playlists[playlistId].tracks)
+       let trackValue = Object.values(library.playlists[playlistId].tracks);
        
        for(let i in trackValue){
-              let trackId = library.tracks[trackValue[i]].id
-              let trackName = library.tracks[trackValue[i]].name
-              let trackArtist = library.tracks[trackValue[i]].artist
-              let trackAlbum = library.tracks[trackValue[i]].album
+              let trackId = library.tracks[trackValue[i]].id;
+              let trackName = library.tracks[trackValue[i]].name;
+              let trackArtist = library.tracks[trackValue[i]].artist;
+              let trackAlbum = library.tracks[trackValue[i]].album;
 
-              console.log(`${trackId}: ${trackName} by ${trackArtist} (${trackAlbum})`)
+              console.log(`${trackId}: ${trackName} by ${trackArtist} (${trackAlbum})`);
               
        }
        
@@ -92,8 +87,8 @@ const printPlaylist = function(playlistId) {
 
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
-       let tracksArray = library.playlists[playlistId].tracks
-       tracksArray.push(trackId)
+       let tracksArray = library.playlists[playlistId].tracks;
+       tracksArray.push(trackId);
 }
 
 
@@ -106,25 +101,25 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-       const newTrackId = generateUid()
+       const newTrackId = generateUid();
        
-       library.tracks[newTrackId] = {}
-       library.tracks[newTrackId].id = newTrackId
-       library.tracks[newTrackId].name = name
-       library.tracks[newTrackId].artist = artist
-       library.tracks[newTrackId].album = album
+       library.tracks[newTrackId] = {};
+       library.tracks[newTrackId].id = newTrackId;
+       library.tracks[newTrackId].name = name;
+       library.tracks[newTrackId].artist = artist;
+       library.tracks[newTrackId].album = album;
 
 }
 
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
-       const newPlaylistId = generateUid()
+       const newPlaylistId = generateUid();
        
-       library.playlists[newPlaylistId] = {}
-       library.playlists[newPlaylistId].id = newPlaylistId
-       library.playlists[newPlaylistId].name = name
-       library.playlists[newPlaylistId].tracks = []
+       library.playlists[newPlaylistId] = {};
+       library.playlists[newPlaylistId].id = newPlaylistId;
+       library.playlists[newPlaylistId].name = name;
+       library.playlists[newPlaylistId].tracks = [];
 
 }
 
@@ -135,21 +130,21 @@ const addPlaylist = function(name) {
 // tip: use "string".search("tri") 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 const printSearchResults = function(query) {
-       let tracksKeys = Object.keys(library.tracks)
-       let tracksValues = Object.values(library.tracks)
+       let tracksKeys = Object.keys(library.tracks);
+       let tracksValues = Object.values(library.tracks);
 
        for(let i in tracksKeys){
-              let trackArr = []
+              let trackArr = [];
 
-              trackArr.push(library.tracks[tracksKeys[i]].id)
-              trackArr.push(library.tracks[tracksKeys[i]].name)
-              trackArr.push(library.tracks[tracksKeys[i]].artist)
-              trackArr.push(library.tracks[tracksKeys[i]].album)
-              for(let index in trackArr)
+              trackArr.push(library.tracks[tracksKeys[i]].id);
+              trackArr.push(library.tracks[tracksKeys[i]].name);
+              trackArr.push(library.tracks[tracksKeys[i]].artist);
+              trackArr.push(library.tracks[tracksKeys[i]].album);
+              for(let index in trackArr){
                      if(trackArr[index].search("tri") !== -1){
-                            console.log(library.tracks[tracksKeys[i]].name)
+                            console.log(library.tracks[tracksKeys[i]].name);
                      }
-
+              }
 
        }
        
