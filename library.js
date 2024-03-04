@@ -31,7 +31,17 @@ const library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 const printPlaylists = function() {
-
+       // let playlistName = library.playlists.playlistCode
+       for(let playlistCode in library.playlists){
+              // console.log(playlistCode)
+              let playlistName = library.playlists[playlistCode]
+              // console.log(playlistName)
+              // console.log(playlistName.name)
+              let numOfTracks = playlistName.tracks.length
+       
+       
+             console.log(`${playlistCode}: ${playlistName.name}- ${numOfTracks} tracks`)
+       }
 }
 
 
@@ -40,7 +50,10 @@ const printPlaylists = function() {
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function() {
-
+       for(let trackCode in library.tracks){
+              let trackObject = library.tracks[trackCode]
+              console.log(`${trackObject.id}: ${trackObject.name} by ${trackObject.artist} (${trackObject.album})`)
+       }
 }
 
 
@@ -49,7 +62,31 @@ const printTracks = function() {
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 const printPlaylist = function(playlistId) {
+       let playlistsKeys = Object.keys(library.playlists)
+       let tracksKeys = Object.keys(library.tracks)
+       
+       
 
+       if(playlistsKeys.includes(playlistId)){
+              let playlistName = library.playlists[playlistId]
+              let numOfTracks = playlistName.tracks.length
+              console.log(`${playlistId}: ${playlistName.name}- ${numOfTracks} tracks`)
+       }
+       
+       
+
+       let trackValue = Object.values(library.playlists[playlistId].tracks)
+       
+       for(let i in trackValue){
+              let trackId = library.tracks[trackValue[i]].id
+              let trackName = library.tracks[trackValue[i]].name
+              let trackArtist = library.tracks[trackValue[i]].artist
+              let trackAlbum = library.tracks[trackValue[i]].album
+
+              console.log(`${trackId}: ${trackName} by ${trackArtist} (${trackAlbum})`)
+              
+       }
+       
 }
 
 
@@ -86,3 +123,7 @@ const addPlaylist = function(name) {
 const printSearchResults = function(query) {
 
 }
+
+// printPlaylists()
+// printTracks()
+// printPlaylist("p01")
