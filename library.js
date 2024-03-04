@@ -114,14 +114,17 @@ const addTrack = function(name, artist, album) {
        library.tracks[newTrackId].artist = artist
        library.tracks[newTrackId].album = album
 
-
-
-
 }
 
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
+       const newPlaylistId = generateUid()
+       
+       library.playlists[newPlaylistId] = {}
+       library.playlists[newPlaylistId].id = newPlaylistId
+       library.playlists[newPlaylistId].name = name
+       library.playlists[newPlaylistId].tracks = []
 
 }
 
@@ -146,3 +149,5 @@ addTrackToPlaylist("t01", "p02")
 // console.log(generateUid())
 
 addTrack("Let it Be", "The Beatles", "Let It Be (1970)")
+
+addPlaylist("My playlist")
