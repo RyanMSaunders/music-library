@@ -20,9 +20,100 @@ const library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
+             },
+       printPlaylists: function() {
+              // let playlistName = library.playlists.playlistCode
+              for(let playlistCode in this.playlists){
+                     let playlistName = this.playlists[playlistCode];
+                     let numOfTracks = playlistName.tracks.length;
+                     console.log(`${playlistCode}: ${playlistName.name}- ${numOfTracks} tracks`);
+              }
+       },
+       printTracks: function() {
+              for(let trackCode in this.tracks){
+                     let trackObject = this.tracks[trackCode];
+                     console.log(`${trackObject.id}: ${trackObject.name} by ${trackObject.artist} (${trackObject.album})`);
+              }
+       },
+       printPlaylist: function(playlistId) {
+              let playlistsKeys = Object.keys(this.playlists);
+              let tracksKeys = Object.keys(this.tracks);
+              
+              
+       
+              if(playlistsKeys.includes(playlistId)){
+                     let playlistName = this.playlists[playlistId];
+                     let numOfTracks = playlistName.tracks.length;
+                     console.log(`${playlistId}: ${playlistName.name}- ${numOfTracks} tracks`);
+              }
+              
+              
+       
+              let trackValue = Object.values(this.playlists[playlistId].tracks);
+              
+              for(let i in trackValue){
+                     let trackId = this.tracks[trackValue[i]].id;
+                     let trackName = this.tracks[trackValue[i]].name;
+                     let trackArtist = this.tracks[trackValue[i]].artist;
+                     let trackAlbum = this.tracks[trackValue[i]].album;
+       
+                     console.log(`${trackId}: ${trackName} by ${trackArtist} (${trackAlbum})`);
+                     
+              }
+              
+       },
+       addTrackToPlaylist: function(trackId, playlistId) {
+              let tracksArray = this.playlists[playlistId].tracks;
+              tracksArray.push(trackId);
+       },
+       
+       
+       
+       generateUid: function() {
+              return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            },
+       addTrack: function(name, artist, album) {
+              const newTrackId = this.generateUid();
+              
+              this.tracks[newTrackId] = {};
+              this.tracks[newTrackId].id = newTrackId;
+              this.tracks[newTrackId].name = name;
+              this.tracks[newTrackId].artist = artist;
+              this.tracks[newTrackId].album = album;
+       
+       },
+       addPlaylist: function(name) {
+              const newPlaylistId = this.generateUid();
+              
+              this.playlists[newPlaylistId] = {};
+              this.playlists[newPlaylistId].id = newPlaylistId;
+              this.playlists[newPlaylistId].name = name;
+              this.playlists[newPlaylistId].tracks = [];
+       
+       },
+       printSearchResults: function(query) {
+              let tracksKeys = Object.keys(this.tracks);
+              let tracksValues = Object.values(this.tracks);
+       
+              for(let i in tracksKeys){
+                     let trackArr = [];
+       
+                     trackArr.push(this.tracks[tracksKeys[i]].id);
+                     trackArr.push(this.tracks[tracksKeys[i]].name);
+                     trackArr.push(this.tracks[tracksKeys[i]].artist);
+                     trackArr.push(this.tracks[tracksKeys[i]].album);
+                     for(let index in trackArr){
+                            if(trackArr[index].search("tri") !== -1){
+                                   console.log(this.tracks[tracksKeys[i]].name);
+                            }
+                     }
+       
+              }
+              
+       }
 };
 
+/*
 /////////////////////////////
 // FUNCTIONS TO IMPLEMENT:
 /////////////////////////////
@@ -30,6 +121,8 @@ const library = {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
+
+
 const printPlaylists = function() {
        // let playlistName = library.playlists.playlistCode
        for(let playlistCode in library.playlists){
@@ -165,3 +258,22 @@ addTrack("Let it Be", "The Beatles", "Let It Be (1970)")
 addPlaylist("My playlist")
 
 printSearchResults("string string")
+
+*/
+
+// library.printPlaylists()
+// library.printTracks()
+// library.printPlaylist("p02")
+// library.printPlaylist("p02")
+
+
+library.addTrackToPlaylist("t01", "p02")
+//TESTING ADDTRACK printPlaylist("p02")
+// console.log(generateUid())
+
+library.addTrack("Let it Be", "The Beatles", "Let It Be (1970)")
+
+library.addPlaylist("My playlist")
+library.printPlaylists()
+
+library.printSearchResults("string string")
